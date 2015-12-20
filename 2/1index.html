@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=640,user-scalable=no,target-densityDpi=device-dpi">
+    <title></title>
+    <style>
+        *{ margin:0; padding:0;}
+        li{
+            list-style: none;
+        }
+        body{font-family:Tahoma,Arial,Roboto,"Droid Sans","Helvetica Neue","Droid Sans Fallback","Heiti SC",sans-self;}
+        #main{ width:640px; height:960px; position:relative; overflow:hidden;}
+        #c1{ width:100%; height:100%; position:absolute; left:0; top:0; z-index:10;}
+        #list{}
+        #list > li{ width:100%; height:100%; position:absolute; left:0; top:0; background-size:cover; display:none; z-index:5;}
+        #list > li.zIndex{ z-index:6;}
+        #list > li:nth-of-type(1){ background-image:url(img/b.png);display:block}
+        #list > li:nth-of-type(2){ background-image:url(img/c.png);;}
+        #list > li:nth-of-type(3){ background-image:url(img/d.png);}
+        #list > li:nth-of-type(4){ background-image:url(img/e.png);}
+        #list > li:nth-of-type(5){ background-image:url(img/ad1.png);}
+        #list > li:nth-of-type(6){ background-image:url(img/ad2.png);}
+        #list > li:nth-of-type(7){ background-image:url(img/ad3.png);}
+        #list > li:nth-of-type(8){ background-image:url(img/ad4.png);}
+   /*page1*/
+        #list .li1Child{ font-size:30px; color:white; position:absolute; left:20%; top:65%;}
+        /*page2*/
+        #list .li2Child li{ width:90px; height:90px; position:absolute; margin-left:-45px;}
+        #list .li2Child li:nth-of-type(1){ background:url(img/c1.png) no-repeat; left:50%; top:30%;}
+        #list .li2Child li:nth-of-type(2){ background:url(img/c2.png) no-repeat; left:20%; top:40%;}
+        #list .li2Child li:nth-of-type(3){ background:url(img/c3.png) no-repeat; left:80%; top:40%;}
+        #list .li2Child li:nth-of-type(4){ background:url(img/c4.png) no-repeat; left:20%; top:60%;}
+        #list .li2Child li:nth-of-type(5){ background:url(img/c5.png) no-repeat; left:80%; top:60%;}
+        #list .li2Child li:nth-of-type(6){ background:url(img/c6.png) no-repeat; left:50%; top:75%;}
+        #list .li2Child li.active{ left:50%; top:50%}
+        /*page3*/
+        #list .li3Child{ width:460px; height:222px; background:url(img/d1.png) no-repeat; position:absolute; left:50%; margin-left:-230px; bottom:20%;}
+        /*page4*/
+        #list .li4Child li{ color:white; font-size:22px; border:2px #FFF solid; border-radius:5px; box-shadow:0 0 15px #FFF; word-wrap:break-word; position:absolute; overflow:hidden; padding:5px; box-sizing:border-box;}
+        #list .li4Child li:nth-of-type(1){ width:200px; height:250px; left:4%; top:14%;}
+        #list .li4Child li:nth-of-type(2){ width:280px; height:160px; left:50%; top:18%}
+        #list .li4Child li:nth-of-type(3){ width:110px; height:290px; left:76%; top:39%;}
+        #list .li4Child li.active{ width:0; height:0;}
+        /*loading*/
+        #loading{ width:100%; height:100%; position:absolute; left:0; top:0; z-index:20; background:white;}
+        #loading ul{ position:absolute; left:50%; top:40%; width:90px; margin-left:-45px;}
+        #loading ul li{ width:5px; height:40px; margin-right:10px; background:#0F0; float:left; animation:2s linear infinite loadingMove;}
+        @keyframes loadingMove{
+            0%{ transform:scaleY(1);}
+            50%{ transform:scaleY(0.2);}
+            100%{ transform:scaleY(1);}
+        }
+        #loading ul li:nth-of-type(1){ animation-delay:-0s;}
+        #loading ul li:nth-of-type(2){ animation-delay:-0.2s;}
+        #loading ul li:nth-of-type(3){ animation-delay:-0.4s;}
+        #loading ul li:nth-of-type(4){ animation-delay:-0.6s;}
+        #loading ul li:nth-of-type(5){ animation-delay:-0.8s;}
+        #loading ul li:nth-of-type(6){ animation-delay:-1s;}
+        #loading div{ font-size:30px; color:#0F0; width:100%; text-align:center; top:50%; position:absolute;}
+    </style>
+</head>
+<body>
+<div id="main">
+    <div id="loading">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div>你的技能是否已经载满....</div>
+    </div>
+    <canvas id="c1" width="640" height="980"></canvas>
+    <ul id="list">
+        <li>
+            <ul class="li1Child">
+                <li>
+                    <p>曾经做为前端开发的你</p>
+                    <p>解决PC兼容性而焦头烂额</p>
+                </li>
+                <li>
+                    <p>而今</p>
+                    <p>移动端H5应用疯狂来袭</p>
+                </li>
+                <li>
+                    <p>你是否已准备充分</p>
+                    <p>学习新技能</p>
+                </li>
+                <li>
+                    <p>曾破茧成蝶、重获新生？</p>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <ul class="li2Child">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </li>
+        <li>
+            <div class="li3Child"></div>
+        </li>
+        <li>
+            <ul class="li4Child">
+                <li>transform  transition  rotate  scale  translate  keyframes animation  webkitTransitionEnd webkitAnimationIteration elapsedTime perspective…</li>
+                <li>drawImage lineWidth  strokeStyle  lineCap  globalCompositeOperation  moveTo   lineTo  stroke  arc  getImageData…</li>
+                <li>audio autoplay loop  paused  play  pause…</li>
+            </ul>
+        </li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script src="jquery-2.1.3.min.js"></script>
+<script>
+    $(document).on("touchmove",function(ev){
+        ev.preventDefault()
+    });
+    $(function(){
+        var $main = $('#main');
+        var $list = $('#list');
+        var $li = $list.find('>li');
+        var desW = 640;
+        var desH = 960;
+        var viewHeight = $(window).height();
+        loading();
+        function loading(){
+            var arr = ['a.png','b.png','c.png','d.png','e.png','ad1.png','ad2.png','ad3.png','ad4.png','c1.png','c2.png','c3.png','c4.png','c5.png','c6.png','d1.png'];
+           var iNow=0;
+            var $loading = $('#loading');
+            for(var i=0;i<arr.length;i++){
+                var img=new Image();
+                img.src = 'img/'+arr[i];
+                img.onload=function(){
+                    iNow++;
+                    if(iNow>=arr.length){
+                        $loading.animate({opacity:0},1000,function(){
+                            $(this).remove();
+                        });
+                    }
+                };
+                img.onerror = function(){ //如果出错 直接进入
+                    $loading.animate({opacity:0},1000,function(){
+                        $(this).remove();
+                    });
+                };
+            }
+        }
+        slideCanvas();//刮开canvase
+        slideList();//滑屏
+        $main.css('height',viewHeight);
+
+        function nowWidth(){ //设置宽度
+            var w = desW/desH * viewHeight;
+            return w;
+        }
+        function slideCanvas(){
+            var oC=$("#c1").get(0);
+            var oGc=oC.getContext("2d");
+            oC.height=viewHeight;
+            var objImg=new Image();
+            objImg.src="img/a.png";
+            var Btn=true;//开关
+            objImg.onload=function(){
+                oGc.drawImage(objImg,(desW - nowWidth())/2 ,0,nowWidth(),viewHeight);
+                oGc.fillStyle="red";
+                oGc.globalCompositeOperation="destination-out";
+                oGc.lineWidth=60;//设置笔画大小
+                oGc.lineCap="round";//这种尽头是圆角
+                $(oC).on("touchstart",function(ev){
+                    var touch=ev.originalEvent.changedTouches[0];
+                    var x=touch.pageX-$(this).offset().left;
+                    var y=touch.pageY-$(this).offset().top;
+                    if(Btn){
+                        Btn=false;
+                        oGc.moveTo(x,y);
+                        oGc.lineTo(x+1,y+1);
+                    }
+                    else{
+                        oGc.lineTo(x+1,y+1);
+                    }
+                    oGc.stroke();//描绘
+                    $(oC).on("touchmove.move",function(ev){
+                        var touch=ev.originalEvent.changedTouches[0];
+                        var x=touch.pageX-$(this).offset().left;
+                        var y=touch.pageY-$(this).offset().top;
+                        oGc.lineTo(x,y);//连接到当前坐标
+                        oGc.stroke();//描绘
+                        fadeOut();//计算透明区域大小，并且在超过1/2的时候移除
+                        function fadeOut(){
+                            var dataImg=oGc.getImageData(0,0,oC.width,oC.height);
+                            var iNum = 0;
+                            var allPx=dataImg.width*dataImg.height;//获取所有像素数量,返回的是数字
+                            for(var i=0;i<allPx;i++){
+                                if(dataImg.data[i*4+3]==0){  //像素空间对应的像素值（r,g,b,a） 获取a
+                                    iNum++;
+                                }
+                            }
+                            if( iNum > allPx/2 ){
+                                $(oC).animate({opacity:0},1000,function(){
+                                    $(this).remove();
+                                    cjAnimate[0].inAn();
+                                });
+                            }
+                        }
+                    });
+                    $(oC).on("touchend",function(ev){
+                        $(oC).off(".move");
+                    })
+
+                })
+            }
+        }
+
+        function slideList(){
+            $li.css('backgroundPosition',( (desW - nowWidth())/2 )+'px 0');
+            var downY=0;
+            var step=1/4;//减少移动距离
+            var nextorprevIndex=0;//上一个或下一个索引
+            var noIndex=0;//当前索引
+            var Btn=true;//禁止快速滑动开关
+            $li.on("touchstart",function(ev){
+                //一开始就判断开关，如果没有完成上一个运动就不允许操作
+                if(!Btn){return;} Btn=false;
+                var touch = ev.originalEvent.changedTouches[0];
+                downY = touch.pageY;
+                nowIndex=$(this).index();
+                $li.on("touchmove.move",function(ev){
+                    var touch=ev.originalEvent.changedTouches[0];
+                    $(this).siblings().hide();//非当前的都隐藏掉
+                    if(touch.pageY<downY){  //手指向上滑动
+                      nextorprevIndex=nowIndex==$li.length-1?0:nowIndex+1;
+                        $li.eq(nextorprevIndex).css("transform","translate(0,"+(viewHeight+touch.pageY-downY)+"px");
+                    }
+                    else if(touch.pageY>downY){ //向下
+                        nextorprevIndex=nowIndex==0?$li.length-1:nowIndex-1;
+                        $li.eq(nextorprevIndex).css("transform","translate(0,"+(-viewHeight+touch.pageY-downY)+"px");
+                    }
+                    else{ //没有滑屏的时候运行下一步操作
+                        Btn=true;
+                    }
+                    $li.eq(nextorprevIndex).show().addClass("zIndex");
+                    //不管是往上还是往下，当前li都是执行缩放和移动
+                    var scale=1-Math.abs(touch.pageY-downY)/viewHeight*step;//缩小值
+                    $(this).css("transform","translate(0,"+(touch.pageY-downY)*step+"px) scale("+scale+")");
+                });
+                $li.on("touchend",function(ev){
+                    $li.off(".move");
+                    //鼠标放开的时候执行切换运动
+                    if(touch.pageY<downY) {  //手指向上滑动
+                        $(this).css("transform","translate(0,"+(-viewHeight*step)+"px) scale("+0+")");
+                    }
+                    else if(touch.pageY>downY) { //向下
+                        $(this).css("transform","translate(0,"+(viewHeight*step)+"px) scale("+0+")");
+                    }
+                   $(this).css("transition",'.3s');
+                    $li.eq(nextorprevIndex).css("transform",'translate(0,0)');
+                   $li.eq(nextorprevIndex).css('transition','.3s');
+                })
+
+            });
+            //监听运动结束
+            $li.on('transitionEnd webkitTransitionEnd',function(ev){
+                if($li.is(ev.target)){
+                    resetFn();
+                    //当前出场和下一个入场是同步的
+                    if(cjAnimate[nowIndex]){//当前li执行出场
+                        cjAnimate[nowIndex].outAn();
+                    }
+                    if( cjAnimate[nextorprevIndex]){//下一个执行出场
+                        cjAnimate[nextorprevIndex].inAn();
+                    }
+
+
+                }
+
+            });
+            function resetFn(){
+                 $li.css('transition','');//防止快速滑动的时候累计
+               $li.eq(nextorprevIndex).removeClass("zIndex").siblings().hide();
+                Btn=true;
+            }
+        }
+        //用数组来保存动画
+        var cjAnimate=[
+            {
+                inAn : function(){
+                    var $liChild = $li.eq(0).find('li');
+                    $liChild.css('opacity',1);
+                    $liChild.css('transform','translate(0,0)');
+                    $liChild.css('transition','1s');
+                },
+                outAn : function(){
+                    var $liChild = $li.eq(0).find('li');
+                    $liChild.css('transition','');
+                    $liChild.css('opacity',0);
+                    $liChild.filter(':even').css('transform','translate(-200px,0)');
+                    $liChild.filter(':odd').css('transform','translate(200px,0)');
+                }
+            },
+            {
+                inAn : function(){
+                    var $liChild = $li.eq(1).find('li');
+                    $liChild.attr("class","");
+                    $liChild.css('transform','rotate(720deg)');//默认是围绕Z轴旋转
+                    $liChild.css('transition','.1s');
+                },
+                outAn : function(){
+                    var $liChild = $li.eq(1).find('li');
+                    $liChild.addClass("active");
+                    $liChild.css('transform','rotate(0)');
+                }
+            },
+            {
+                inAn : function(){
+                    var $liChild = $li.eq(2).find('div');
+                    $liChild.css('transform','rotateY(360deg)');
+                    $liChild.css('transition','1s');
+                },
+                outAn : function(){
+                    var $liChild = $li.eq(2).find('div');
+                    $liChild.css('transform','rotateY(0)');
+                }
+            },
+            {
+                inAn : function(){
+                    var $liChild = $li.eq(3).find('li');
+                    $liChild.attr("class","");
+                    $liChild.css('transition','.3s');
+                },
+                outAn : function(){
+                    var $liChild = $li.eq(3).find('li');
+                    $liChild.addClass("active");
+                    $liChild.css('transition','.3s');
+                }
+            }
+        ];
+        //让所有li都默认为出场动画
+        $.each(cjAnimate,function(i,obj){
+            obj.outAn();
+        });
+    });
+</script>
+
+</body>
+</html>
