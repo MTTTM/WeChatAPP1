@@ -28,7 +28,7 @@ D.|==================cube,3D模型[
 |----2.通过transitionEnd来监听3D合作入场动画，如果动画停止马上清除过渡!important
 |
 |----bind()
-|-1.3D合作旋转，其实就是通过拓展来对盒子最外层的rotateX和 rotateY的修改
+|-1.3D合作旋转，其实就是通过拖拽来对盒子最外层的rotateX和 rotateY的修改
 |-2.需要强调的是拖拽Y轴方向的改变对应的是rotateX的改变，而X轴的改变对应的是rotateY的改变
 |-3.限制最大范围和最小范围的rotateX为70deg和-70deg，具体为什么可以实际操作3D盒子来查看
 |-4.需要区分拖拽和点击， 这个判断是梗桔bBtn的变量的赋值来判断的，在touchstart的时候赋值为true，在touchmove的时候赋值为false，这样在touchend的时候就能区分开点击和拖拽
@@ -36,7 +36,7 @@ D.|==================cube,3D模型[
 |
 | |1.如果是拖拽，就累加rotateX和rotateY
 |-|
-  |2.如果是点击就执行 details.show($(this).index());，更加当前点击的3D盒子li对应的索引来执行下一个场景的入场
+  |2.如果是点击就执行 details.show($(this).index());，根据当前点击的3D盒子li对应的索引来执行下一个场景的入场
 |==================cube返回值cube.init(),并在函数外面底部执行]
 E.|=============[details，左右切换的详情
 |---------init()
