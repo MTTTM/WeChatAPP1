@@ -1,0 +1,62 @@
+写在前面
+...............  <meta name="viewport" content="width=640,user-scalable=no,target-densityDpi=device-dpi"> 强制压缩页面为640px大小，页面布局用培训px
+...............东西不过不过能提供出场入场的思路
+A.|==============[app.init(),程序入口
+|--app.layout();//布局....
+|--app.loading();//加载.....
+|--app.slideCanvas();//刮开canvase
+|--app.slideList();//滑屏
+|--$.each(app.cjAnimate,function(i,obj){ obj.outAn(); });// 让所有li都默认为出场动画
+|==========执行app.init()]
+B.|==========[app.slideCanvas();//刮开canvase
+|-----------1.objImg.onload在canvas需要的图片加载完毕后执行canvas操作
+|--|a.oGc.drawImage(objImg,(desW - app.nowWidth())/2 ,0,app.nowWidth(),viewHeight);设置canvase的宽度以及使用的图片
+|  |b.  oGc.globalCompositeOperation="destination-out";设置叠加方式
+|  |c.  oGc.lineWidth=60;//设置笔画大小
+|  |d.oGc.lineCap="round";//尽头是圆角
+|--|
+|----------2.拖拽
+|--a.touchstart 获取当前点击的x y坐标，通过Btn来判断是执行moveTo还是执行lineTo，然后 oGc.stroke();//描绘
+|--b.touchmove 获取当前的x y坐标 并绘制canvas，并在fadeOut里面监听像素数量比例，如果透明的像素的比例超过指定的值就让当前canvas开始淡出并移除，在移除后马上执行第一个动画的入场app.cjAnimate[0].inAn();
+|-c.touchend 鼠标抬起的时候移除.move拖拽事件，推荐shiy6ong命名空间来操作事件避免和其他场景的事件冲突，因为很多情况下拖拽都是绑定在document上的
+|===================执行app.init()]
+B.|==============app.layout();//布局....
+|- $main.css('height',viewHeight);让最外层div高强制等于视口高
+|=============app.layout()在app.init()里面调用]
+C.|======================[app.nowWidth,获取layout里面设置了height后的网页宽度，这里并没有设置宽度，只是给其他地方提供当前页面的宽度，例如slideCanvas里面就用的了他===============end]
+D.|=====================  app.slideList();//循环滑屏
+|--a.其实这个函数还是用到了拖拽，所有的东西都是和拖拽距离来挂钩的！improtant,而场景切换动画则在cjAnimatie数组里面，恩没错，就是个数组
+|--b.定义downY拖拽的Y方向的距离为0、step=1/4下一个进入视口的场景的移动速度比第一个要慢一些、noIndex当前索引、nextorprevIndex下一个进来的场景的索引、Btn防止快速拖拽的开挂，它会在touchstart touchmove以及transitionEnd事件监的函数里面出现
+|--c.touchstart
+|--| if(!Btn){return;} Btn=false;  //一开始就判断开关，如果没有完成上一个运动就不允许操作
+|--| downY = touch.pageY;获取当前的Y坐标
+|--| nowIndex=$(this).index(); 获取当前的索引
+|--d.touchmove.move
+|--| $(this).siblings().hide();//非当前的都隐藏掉,避免同时出现多个场景在一个视口的情况
+|--| $li.eq(nextorprevIndex).show().addClass("zIndex");/下一个对应的场景显示
+|-----------------------[滑屏判断
+|--| //手指向上滑动
+|--| nextorprevIndex=nowIndex==$li.length-1?0:nowIndex+1; 判断下一个索引，如果是最后一个就返回第一个
+|--|  $li.eq(nextorprevIndex).css("transform","translate(0,"+(viewHeight+touch.pageY-downY)+"px");//下一个入场
+|
+|--//手指向下滑动
+|--|  nextorprevIndex=nowIndex==0?$li.length-1:nowIndex-1;//判断索引，如果是第一个就返回最后一个
+|--|  $li.eq(nextorprevIndex).css("transform","translate(0,"+(-viewHeight+touch.pageY-downY)+"px");//下一个入场
+|--
+|--|//没有滑屏的时候运行下一步操作  Btn=true;
+|
+|-- $li.eq(nextorprevIndex).show().addClass("zIndex");给下一个场景设置zIndex覆盖当前场景
+|-- $(this).css("transform","translate(0,"+(touch.pageY-downY)*step+"px) scale("+scale+")"); 如果是上滑动还是下滑动，当前都会执行伸缩，不同的是translate
+|--e.touchend手指放开
+|--|根据手指滑动的方向，让当前场景执行不同的运动   $(this).css("transform","translate(0,"+(-viewHeight*step)+"px) scale("+0+")");
+|--|不管手指滑动是哪个方向，下一个场景都是     $li.eq(nextorprevIndex).css("transform",'translate(0,0)');
+|
+|--|f.监听运动transitionEnd
+|--| if($li.is(ev.target)) 判断监听的运动是否是$li,因为监听运动transitionEnd会把子级的运动也会监听到
+|--| resetFn();移除当前的过渡！improtant
+|--|执行入场和出场，当前出场和下一个入场是同步的，不过在执行前必须先判断是否存在，避免出场，有些场景里面是没有动画的
+|==============================================app.slideList()在app.init里面调用]
+E.|==============[app.cjAnimate//进场入场队列,每个场景都有出场和入场两个动画，出场入场其实就是个队列所有用数组来管理最好
+F.|==============app.loading通过图片预加载来制作遮罩层以及loading动画，动画不难不过对于我这样的菜鸟还是有需要好好去看几遍的
+
+
