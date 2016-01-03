@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-2.1.3.min.js"></script>
+    <style>
+        html{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            width: 100%;
+            height: 100%;
+            background: blue;
+            display: block;
+            position: relative;
+        }
+        p{
+            position: relative;
+            margin-top: 30px;
+            width: 100%;
+            height: 100%;
+            line-height:100%;
+            text-align: center;
+            font-size:20px;
+            color:#fff
+        }
+    </style>
+</head>
+<body>
+<p>呵呵呵呵</p>
+<script>
+    $(window).resize(function(){
+        if(window.orientation!=0){
+            $("body").css({"transform": "rotate(-90deg)"})
+        }
+        else{
+            $("body").css({"transform": "rotate(0)"})
+        }
+    })
+</script>
+</body>
+</html>

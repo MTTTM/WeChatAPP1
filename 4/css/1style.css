@@ -1,0 +1,386 @@
+html{
+    overflow: hidden;
+    background: #000000;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+body{font-family:Tahoma,Arial,Roboto,"Droid Sans","Helvetica Neue","Droid Sans Fallback","Heiti SC",sans-self;}
+li{
+    list-style: none;
+}
+#main{
+    width: 640px;
+    height: 1008px;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: -320px;
+    transform-origin: top;
+    z-index: -1;
+    overflow: hidden;
+}
+#phone{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background: url(../img/phoneBg.jpg) no-repeat;
+    transition:.5s linear;
+}
+#phoneHead{
+    width: 100%;
+    position: absolute;
+    top: 50px;
+}
+#phoneHead .phoneHeadName{
+    width: 262px;
+    height: 115px;
+    margin: 0 auto;
+    background: url(../img/phoneHeadName.png) no-repeat;
+}
+#phoneHead .phoneHeadText{
+    font-size: 30px;
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: 3px;
+    margin-top: 5px;
+
+}
+#phoneBtn{
+    width: 520px;
+    height: 360px;
+    position: absolute;
+    left: 50%;
+    margin-left: -260px;
+    bottom:30px;
+    background:url(../img/phoneBtn.png) no-repeat;
+    transition: .5s;
+}
+#phoneBtn .phoneBtnArc{
+    width: 170px;
+    height: 170px;
+    position: absolute;
+    left: 359px;
+    top:145px;
+    border: 3px #00ff00 solid;
+    border-radius: 50%;
+    animation:1s linear infinite phoneBtnArcMove;
+    z-index:-1;
+}
+@keyframes phoneBtnArcMove{
+    0%{
+        transform:scale(1.2)
+    }
+    100%{
+        transform: scale(0);
+    }
+}
+#phoneBtnTouch{
+    width: 170px;
+    height: 170px;
+    position: absolute;
+    left: 360px;
+    top:145px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0);
+}
+#phoneKey{
+    width: 520px;
+    height: 659px;
+    background:url(../img/phoneKey.png) no-repeat;
+    position: absolute;
+    margin-left: -260px;
+    left:50%;
+    bottom:30px;
+    transform:translate(0,689px);
+
+}
+#phoneKey .phoneKeyTouch{
+    width: 170px;
+    height: 170px;
+    position: absolute;
+    left: 50%;
+    bottom:30px;
+    margin-left: -85px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0);
+}
+/*第二page*/
+#message{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index:8;
+    overflow: hidden;
+    background: #eaeaea;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    -ms-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s;
+}
+#messageList{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 20px;
+    box-sizing:border-box;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    -ms-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s;
+}
+#messageList li{
+    position: relative;
+    margin-bottom: 10px;
+ max-width: 360px;
+    padding:25px;
+    line-height:40px;
+    font-size: 26px;
+    clear:both;
+    border-radius:10px;
+    opacity:0;
+    transform:translate(0,100);
+    transition:.5s;
+}
+#messageList li img{
+    display: block;
+    position: absolute;
+    top:0;
+}
+#messageList .sty1{
+    float: left;
+    margin-left:100px;
+    background: #ffffff;
+    border: 2px #cacaca solid;
+}
+#messageList .sty2{
+    float: right;
+    margin-right: 100px;
+    background: #a2e45c;
+    border: 2px #96b474 solid;
+}
+#messageList .sty1 img{
+left:-100px;
+}
+#messageList .sty2 img{
+    right:-100px;
+}
+#messageList li .arrow{
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 20px;
+}
+#messageList .sty1 .arrow{
+    left: -10px;
+    background: url(../img/messageArrow1.png);
+}
+#messageList .sty2 .arrow{
+    right: -10px;
+    background: url(../img/messageArrow2.png);
+}
+#messageText{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width: 640px;
+    height: 88px;
+    background: url(../img/messageText.png);
+}
+/*3D魔方*/
+#cube{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+   perspective:800px;
+    top: 0;
+    left: 0;
+    z-index:6;
+    background: url(../img/cubeBg.jpg);
+}
+#cubeBox{
+    width: 510px;
+    height: 510px;
+    position: absolute;
+    transform-style: preserve-3d;
+    transform:scale(0) rotateX(-45deg) rotateY(-180deg);
+    transform-origin:255px 255px -255px;/*X Y Z轴都需要居中*/
+    left: 50%;
+    top: 30%;
+    margin-left: -260px;
+}
+#cube li{
+    width: 510px;
+    height: 510px;
+    position: absolute;
+}
+#cube li:nth-of-type(1){
+    background: url(../img/cubeImg1.png);
+}
+#cube li:nth-of-type(2){
+    left: 510px;
+    top:0;
+    transform:rotateY(90deg);
+    transform-origin:left;
+    background: url(../img/cubeImg2.png);
+}
+#cube li:nth-of-type(3){
+    left: 0;
+    top:0;
+    transform:translateZ(-510px) rotateY(180deg) ;
+    background: url(../img/cubeImg3.png);
+}
+#cube li:nth-of-type(4){
+    right: 510px;
+    top:0;
+    transform-origin:right;
+    transform: rotateY(-90deg) ;
+    background: url(../img/cubeImg4.png);
+}
+#cube li:nth-of-type(5){
+    right: 0;
+    top:-510px;
+    transform-origin:bottom;
+    transform: rotateX(90deg) ;
+    background: url(../img/cubeImg5.png);
+}
+#cube li:nth-of-type(6){
+    right: 0;
+    top:510px;
+    transform-origin:top;
+    transform: rotateX(-90deg) ;
+    background: url(../img/cubeImg6.png);
+}
+#cubeTip{
+    width: 394px;
+    height: 44px;
+    background: url(../img/cubeTip.png) no-repeat;
+    position: absolute;
+    left: 50%;
+    margin-left: -197px;
+    bottom: 50px;
+    background-size: contain;
+    z-index:6;
+}
+#cubeShare{
+    width: 62px;
+    height: 62px;
+    background: url(../img/cubeShare.png);
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index:6;
+}
+/*手动切屏*/
+#details{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 6;
+  display: none;
+}
+#detailsList{
+    width: 100%;
+    height: 100%;
+    perspective:800px; transform-style:preserve-3d;
+}
+#detailsList li{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    visibility: hidden
+}
+#detailsList li:nth-of-type(1){
+    background: #5cb2a9;
+}
+#detailsList li:nth-of-type(2){
+    background: #ff7777;
+}
+#detailsList li:nth-of-type(3){
+    background: #fbffe6;
+}
+#detailsList li:nth-of-type(4){
+    background: #e5fff4;
+}
+#detailsList li:nth-of-type(5){
+    background: #ffffff;
+}
+#detailsList li:nth-of-type(6){
+    background: #5974ff;
+}
+#detailsBtn{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom:20px;
+    z-index:20;
+}
+#detailsBtn li{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.3);
+    display: inline-block;
+    margin: 5px;
+}
+#detailsBtn li.active{
+    background: #666;
+}
+#detailsReturn{
+    width: 65px;
+    height: 76px;
+    background: url(../img/detailsReturn.png);
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index:20;
+}
+#detailsList li.fadeIn{ animation:.5s detailsFadeIn; visibility:visible;}
+#detailsList li.fadeOut{ animation:.5s detailsFadeOut; visibility:hidden;}
+@keyframes detailsFadeIn{
+    0%{ opacity:0; transform:scale(0.8);}
+    100%{ opacity:1; transform:scale(1);}
+}
+@keyframes detailsFadeOut{
+    0%{ opacity:1; transform:scale(1); visibility:visible;}
+    100%{ opacity:0; transform:scale(0.8);}
+}
+/*============左右切换===================*/
+#detailsList li.leftShow{ animation:1s detailsLeftShow; visibility:visible; z-index:10;}
+#detailsList li.rightHide{ animation:1s detailsRightHide; visibility:hidden;}
+@keyframes detailsLeftShow{
+    0%{ transform:translateZ(-200px);}
+    40%{ transform:translateX(-300px) scale(0.8) rotateY(-30deg);}
+    100%{ transform:translate(0,0) scale(1) rotateY(0);}
+}
+@keyframes detailsRightHide{
+    0%{ visibility:visible;}
+    40%{ transform:translateX(300px) scale(0.8) rotateY(30deg);}
+    100%{ transform:translateZ(-200px);}
+}
+
+#detailsList li.rightShow{ animation:1s detailsRightShow; visibility:visible; z-index:10;}
+#detailsList li.leftHide{ animation:1s detailsLeftHide; visibility:hidden;}
+
+@keyframes detailsRightShow{
+    0%{ transform:translateZ(-200px);}
+    40%{ transform:translateX(300px) scale(0.8) rotateY(30deg);}
+    100%{ transform:translate(0,0) scale(1) rotateY(0);}
+}
+@keyframes detailsLeftHide{
+    0%{ visibility:visible;}
+    40%{ transform:translateX(-300px) scale(0.8) rotateY(-30deg);}
+    100%{ transform:translateZ(-200px);}
+}
